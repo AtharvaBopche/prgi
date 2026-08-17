@@ -1,0 +1,22 @@
+{
+  "daily": ["dainik", "pratidin", "dinamalar", "rojanama", "dinakaran", "prathahkal"],
+  "evening": ["sandhya", "sanj", "saamna", "sayam"],
+  "morning": ["prabhat", "sakal", "subah", "bhor", "udaya"],
+  "news": ["samachar", "khabar", "vartha", "seithigal", "khabrein"],
+  "india": ["bharat", "hindustan", "bharatham"],
+  "indian": ["bharatiya", "hindustani"],
+  "voice": ["vani", "awaz", "saamna", "vural", "kural"],
+  "times": ["kal", "samay", "kalam"],
+  "herald": ["doot", "sandesh"],
+  "express": ["gatiman", "tej"],
+  "truth": ["satya", "sach", "meyy"],
+  "sun": ["surya", "bhanu", "ravi", "dina"],
+  "light": ["joti", "ujala", "prakash", "roshni"],
+  "star": ["tara", "nakshatra"],
+  "people": ["jan", "janta", "lok", "praja"],
+  "world": ["duniya", "jagat", "vishwa", "samsar", "lokam"],
+  "friend": ["mitra", "sokha", "thozhan"],
+  "patriot": ["deshabhimani", "deshbhakta"],
+  "nation": ["rashtra", "desh"],
+  "national": ["rashtriya", "deshiya"]
+}
