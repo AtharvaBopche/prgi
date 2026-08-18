@@ -1,3 +1,0 @@
-# Runtime dependencies for the Vercel Python function.
-fastapi>=0.100.0
-pydantic>=2.0.0
