@@ -1,14 +1,27 @@
 import os
+import shutil
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DATA_DIR = BASE_DIR / "data"
 DATABASE_DIR = BASE_DIR / "database"
 
-DATABASE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 
-DB_PATH = DATABASE_DIR / "master_database.db"
+# Set PRGI_DATABASE_DIR to a persistent-disk mount (for example /var/data on
+# Render) to retain submissions across restarts and redeployments. On first
+# start, the packaged title database is copied into that directory.
+PERSISTENT_DATABASE_DIR = os.getenv("PRGI_DATABASE_DIR")
+if PERSISTENT_DATABASE_DIR:
+    runtime_database_dir = Path(PERSISTENT_DATABASE_DIR)
+    runtime_database_dir.mkdir(parents=True, exist_ok=True)
+    DB_PATH = runtime_database_dir / "master_database.db"
+    bundled_database = DATABASE_DIR / "master_database.db"
+    if not DB_PATH.exists() and bundled_database.exists():
+        shutil.copy2(bundled_database, DB_PATH)
+else:
+    DATABASE_DIR.mkdir(parents=True, exist_ok=True)
+    DB_PATH = DATABASE_DIR / "master_database.db"
 
 DISALLOWED_WORDS_FILE = DATA_DIR / "disallowed_words.txt"
 DISALLOWED_PREFIXES_FILE = DATA_DIR / "disallowed_prefixes.txt"
