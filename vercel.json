@@ -5,6 +5,7 @@
   "outputDirectory": "frontend/dist",
   "functions": {
     "api/**/*.py": {
+      "includeFiles": "{backend/app/**,backend/data/**,backend/database/master_database.db}",
       "excludeFiles": "{backend/tests/**,scratch/**,.pytest_cache/**,**/__pycache__/**}"
     }
   },
