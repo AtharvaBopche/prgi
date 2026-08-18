@@ -1,0 +1,10 @@
+[
+  "backend/tests/test_guidelines.py::test_periodicity_modification",
+  "backend/tests/test_guidelines.py::test_prohibited_words",
+  "backend/tests/test_guidelines.py::test_title_combination",
+  "backend/tests/test_probability.py::test_guideline_violation_probability",
+  "backend/tests/test_probability.py::test_probability_calculation",
+  "backend/tests/test_similarity.py::test_compute_title_similarity",
+  "backend/tests/test_similarity.py::test_fuzzy_similarity",
+  "backend/tests/test_similarity.py::test_phonetic_similarity"
+]
