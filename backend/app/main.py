@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import title_check, submissions, database
@@ -25,7 +27,10 @@ app.include_router(database.router)
 
 @app.on_event("startup")
 def startup_event():
-    seed_database()
+    # The production database is seeded before deployment and copied to /tmp
+    # by core.config. Vercel's deployed filesystem is read-only.
+    if not os.environ.get("VERCEL"):
+        seed_database()
 
 @app.get("/")
 def root():

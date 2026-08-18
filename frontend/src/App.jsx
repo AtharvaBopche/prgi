@@ -25,10 +25,10 @@ export function App() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="app-shell">
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
       
-      <main style={{ flexGrow: 1, maxWidth: '1200px', width: '100%', margin: '0 auto', padding: '0 24px' }}>
+      <main className="app-main">
         {activeTab === 'check' && (
           <TitleCheck onSubmissionCreated={addSessionSubmission} />
         )}
