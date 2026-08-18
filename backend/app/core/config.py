@@ -15,7 +15,10 @@ if os.environ.get("VERCEL"):
     RUNTIME_DATABASE_DIR.mkdir(parents=True, exist_ok=True)
     DB_PATH = RUNTIME_DATABASE_DIR / "master_database.db"
     BUNDLED_DB_PATH = DATABASE_DIR / "master_database.db"
-    if not DB_PATH.exists():
+    # Function bundles can omit optional binary files in some deployment
+    # configurations. Do not fail while importing the API if that happens:
+    # startup will build a fresh temporary database instead.
+    if not DB_PATH.exists() and BUNDLED_DB_PATH.exists():
         shutil.copy2(BUNDLED_DB_PATH, DB_PATH)
 else:
     DATABASE_DIR.mkdir(parents=True, exist_ok=True)

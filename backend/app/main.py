@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import title_check, submissions, database
 from app.database.seed import seed_database
+from app.core.config import DB_PATH
 
 app = FastAPI(
     title="PRGI Title Verification API",
@@ -27,9 +28,10 @@ app.include_router(database.router)
 
 @app.on_event("startup")
 def startup_event():
-    # The production database is seeded before deployment and copied to /tmp
-    # by core.config. Vercel's deployed filesystem is read-only.
-    if not os.environ.get("VERCEL"):
+    # Vercel's deployed filesystem is read-only. When the packaged seeded
+    # SQLite file is unavailable, create it in /tmp rather than crashing the
+    # function at import time.
+    if not os.environ.get("VERCEL") or not DB_PATH.exists():
         seed_database()
 
 @app.get("/")
